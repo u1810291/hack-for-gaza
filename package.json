@@ -1,0 +1,43 @@
+{
+  "name": "GazaCrisisApp",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios"
+  },
+  "dependencies": {
+    "@react-native-community/netinfo": "^11.4.1",
+    "@react-native-mapbox-gl/maps": "^8.6.0-beta.0",
+    "@react-navigation/native": "^6.1.18",
+    "@react-navigation/stack": "^6.4.1",
+    "i18next": "^23.15.1",
+    "react": "^18.2.0",
+    "react-i18next": "^15.0.2",
+    "react-native": "^0.74.5",
+    "react-native-bluetooth-serial": "^1.0.0-rc1",
+    "react-native-crypto-js": "^1.0.0",
+    "react-native-localize": "^3.2.0",
+    "react-native-mapbox-gl": "^5.1.0",
+    "react-native-maps": "^1.14.0",
+    "react-native-permissions": "^4.1.5",
+    "react-native-push-notification": "^8.1.1",
+    "react-native-qrcode-svg": "^6.3.1",
+    "react-native-safe-area-context": "^4.10.5",
+    "react-native-screens": "^3.34.0",
+    "react-native-sqlite-storage": "^6.0.1",
+    "typescript": "^5.6.2",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "@babel/preset-env": "^7.20.0",
+    "@babel/preset-typescript": "^7.24.7",
+    "@types/react": "^18.2.0",
+    "@types/react-native": "^0.73.0",
+    "@types/react-native-bluetooth-serial": "^1.0.5",
+    "@types/react-native-crypto-js": "^1.0.3",
+    "@types/react-native-push-notification": "^8.1.4",
+    "@types/react-native-sqlite-storage": "^6.0.5"
+  }
+}
