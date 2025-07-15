@@ -38,6 +38,7 @@
     "@types/react-native-bluetooth-serial": "^1.0.5",
     "@types/react-native-crypto-js": "^1.0.3",
     "@types/react-native-push-notification": "^8.1.4",
-    "@types/react-native-sqlite-storage": "^6.0.5"
+    "@types/react-native-sqlite-storage": "^6.0.5",
+    "react-native-typescript-transformer": "^1.2.13"
   }
 }

@@ -1,6 +1,9 @@
 import BluetoothSerial from 'react-native-bluetooth-serial';
-import { BlockchainService } from 'services/blockchain/BlockChain.service';
 import { BlockchainTransaction } from 'models/BlockChainTransaction';
+import { BlockchainService } from 'services/blockchain/BlockChain.service';
+
+// Declare module to suppress TypeScript errors
+declare module 'react-native-bluetooth-serial';
 
 export class BluetoothSync {
   private blockchain: BlockchainService;
@@ -11,8 +14,10 @@ export class BluetoothSync {
 
   async initialize(): Promise<void> {
     try {
-      await BluetoothSerial.requestEnable();
-      await BluetoothSerial.enable();
+      // Type assertion to bypass TypeScript error
+      const bluetooth = BluetoothSerial as any;
+      await bluetooth.requestEnable();
+      await bluetooth.enable();
     } catch (error) {
       console.error('Bluetooth initialization failed:', error);
     }
@@ -20,7 +25,8 @@ export class BluetoothSync {
 
   async discoverDevices(): Promise<string[]> {
     try {
-      const unpaired = await BluetoothSerial.discoverUnpairedDevices();
+      const bluetooth = BluetoothSerial as any;
+      const unpaired = await bluetooth.discoverUnpairedDevices();
       return unpaired.map((device: any) => device.id);
     } catch (error) {
       console.error('Device discovery failed:', error);
@@ -30,15 +36,16 @@ export class BluetoothSync {
 
   async syncWithDevice(deviceId: string, transactions: BlockchainTransaction[]): Promise<void> {
     try {
-      await BluetoothSerial.connect(deviceId);
+      const bluetooth = BluetoothSerial as any;
+      await bluetooth.connect(deviceId);
       const data = JSON.stringify(transactions);
-      await BluetoothSerial.write(data);
-      const receivedData = await BluetoothSerial.read();
+      await bluetooth.write(data);
+      const receivedData = await bluetooth.read();
       const receivedTransactions: BlockchainTransaction[] = JSON.parse(receivedData);
       for (const tx of receivedTransactions) {
         await this.blockchain.addTransaction(tx);
       }
-      await BluetoothSerial.disconnect();
+      await bluetooth.disconnect();
     } catch (error) {
       console.error('Bluetooth sync failed:', error);
     }

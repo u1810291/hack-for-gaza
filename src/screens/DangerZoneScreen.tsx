@@ -3,13 +3,15 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 import { DangerZone } from 'models/DangerZone';
 import { useTranslation } from 'react-i18next';
 import { theme } from 'theme';
+import { RouteProp, useRoute } from '@react-navigation/native';
 
-interface Props {
-  route: { params: { dangerZone: DangerZone } };
+interface RouteI {
+  dangerZone: DangerZone
 }
 
-const DangerZoneScreen: React.FC<Props> = ({ route }) => {
-  const { dangerZone } = route.params;
+const DangerZoneScreen: React.FC = () => {
+  const route: RouteProp<{ params: RouteI }> = useRoute()
+  const { dangerZone }: RouteI = route.params;
   const { t } = useTranslation();
 
   return (

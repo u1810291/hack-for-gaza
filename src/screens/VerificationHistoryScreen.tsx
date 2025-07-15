@@ -4,12 +4,14 @@ import React, { useEffect, useState } from 'react';
 import { VerificationRecord } from 'models/VerificationRecord';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { VerificationService } from 'services/ai/Verification.service';
+import { RouteProp, useRoute } from '@react-navigation/native';
 
-interface Props {
-  route: { params: { entityId: string } };
+interface RouteI {
+  entityId: string;
 }
 
-const VerificationHistoryScreen: React.FC<Props> = ({ route }) => {
+const VerificationHistoryScreen: React.FC = () => {
+  const route: RouteProp<{ params: RouteI }> = useRoute();
   const { entityId } = route.params;
   const { t } = useTranslation();
   const [records, setRecords] = useState<VerificationRecord[]>([]);

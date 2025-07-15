@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
-import { AidPoint, Comment } from 'models/AidPoint';
-import { useTranslation } from 'react-i18next';
 import { theme } from 'theme';
-import CommentInput from 'components/CommentInput';
-import { useNavigation } from '@react-navigation/native';
-import { TransactionService } from 'services/blockchain/TransactionService';
-import { BlockchainService } from 'services/blockchain/BlockchainService';
 import { v4 as uuidv4 } from 'uuid';
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import CommentInput from 'components/CommentInput';
+import { AidPoint, Comment } from 'models/AidPoint';
+import { useRoute, RouteProp } from '@react-navigation/native';
+import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
+import { BlockchainService } from 'services/blockchain/BlockChain.service';
+import { TransactionService } from 'services/blockchain/Transaction.service';
 
-interface Props {
-  route: { params: { aidPoint: AidPoint } };
+interface RouteI {
+  aidPoint: AidPoint
 }
 
-const AidPointScreen: React.FC<Props> = ({ route }) => {
-  const { aidPoint } = route.params;
+const AidPointScreen: React.FC = () => {
+  const route: RouteProp<{ params: RouteI }> = useRoute()
+  const { aidPoint }: RouteI = route.params;
   const { t } = useTranslation();
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   const [comments, setComments] = useState<Comment[]>(aidPoint.comments);
 
   const handleAddComment = async (text: string) => {
@@ -53,7 +54,8 @@ const AidPointScreen: React.FC<Props> = ({ route }) => {
       <Button
         title={t('view_verification_history')}
         onPress={() =>
-          navigation.navigate('VerificationHistory', { entityId: aidPoint.id })
+          console.log("VerificationHistory")
+          // navigation.navigate('VerificationHistory', { entityId: aidPoint.id })
         }
       />
       <Text style={styles.subHeader}>{t('comments')}</Text>

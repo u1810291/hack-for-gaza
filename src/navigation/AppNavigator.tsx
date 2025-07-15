@@ -1,11 +1,11 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from 'screens/HomScreen';
-import AidPointScreen from 'screens/AidPointScreen';
-import DangerZoneScreen from 'screens/DangerZoneScreen';
-import VerificationHistoryScreen from 'screens/VerificationHistoryScreen';
-import SettingsScreen from 'screens/SettingsScreen';
 import { useTranslation } from 'react-i18next';
+import AidPointScreen from 'screens/AidPointScreen';
+import SettingsScreen from 'screens/SettingsScreen';
+import DangerZoneScreen from 'screens/DangerZoneScreen';
+import { createStackNavigator } from '@react-navigation/stack';
+import VerificationHistoryScreen from 'screens/VerificationHistoryScreen';
 
 const Stack = createStackNavigator();
 
